@@ -1,0 +1,47 @@
+.popup {
+  max-width: 500px;
+  width: 100%;
+}
+
+.content {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(234, 234, 234);
+}
+
+.title {
+  margin-bottom: 12px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 30px;
+}
+
+.buttonCancel {
+  margin-right: 15px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #555555;
+  }
+}
+
+.buttonSave {
+  color: #ff6a5f;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #c74b40;
+  }
+}

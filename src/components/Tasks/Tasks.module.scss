@@ -1,0 +1,14 @@
+.list {
+  display: flex;
+  align-items: flex-start;
+  padding: 30px;
+}
+
+.item {
+  max-width: 356px;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
