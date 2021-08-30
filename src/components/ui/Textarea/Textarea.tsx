@@ -5,15 +5,16 @@ import styles from './Textarea.module.scss';
 
 type TextareaProps = {
   className?: string;
-  value: string;
+  value?: string;
   placeholder?: string;
-  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  name: string;
 };
 
 export const Textarea: FC<TextareaProps> = ({
-  className, value, placeholder, onChange,
+  className, value, placeholder, onChange, name,
 }) => (
-  <textarea className={clsx(styles.textarea, className)} value={value} placeholder={placeholder} onChange={onChange}>
+  <textarea className={clsx(styles.textarea, className)} value={value} name={name} placeholder={placeholder} onChange={onChange}>
     {value}
   </textarea>
 );

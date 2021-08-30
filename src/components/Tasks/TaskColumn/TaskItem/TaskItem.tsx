@@ -11,8 +11,11 @@ export const TaskItem: FC<TaskItemProps> = (data) => {
   const { setDataModal, setOpenModal } = useContext(TasksContext);
 
   const onClickItem = () => {
-    setDataModal(data);
-    setOpenModal();
+    setOpenModal(true);
+
+    if (setDataModal) {
+      setDataModal(data);
+    }
   };
 
   return (

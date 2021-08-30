@@ -1,25 +1,48 @@
 import React, {
-  ChangeEvent, FC, useContext, useState,
+  ChangeEvent, FC, useContext, useEffect, useState,
 } from 'react';
 import clsx from 'clsx';
 
 import { TasksContext } from '@/components/Tasks/TasksContext';
+import { TaskItemProps } from '@/components/Tasks/types/TasksTypes';
 import { Popup } from '@/components/ui/Popup';
 import { Textarea } from '@/components/ui/Textarea';
 
 import styles from './TaskModal.module.scss';
 
-export const TaskModal: FC = () => {
-  const { openModal, setOpenModal } = useContext(TasksContext);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+const DEFAULT_DATA = {
+  id: '',
+  name: '',
+  description: '',
+};
 
-  const onChangeName = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setName(event.target.value);
+export const TaskModal: FC = () => {
+  const {
+    openModal, setOpenModal, dataModal, setDataModal,
+  } = useContext(TasksContext);
+  const [data, setData] = useState<TaskItemProps>(DEFAULT_DATA);
+
+  useEffect(() => {
+    if (dataModal) {
+      setData(dataModal);
+    } else {
+      setData({} as TaskItemProps);
+    }
+  }, [dataModal]);
+
+  const onChangeTextarea = ({ target: { value, name } }: ChangeEvent<HTMLTextAreaElement>) => {
+    setData({
+      ...data,
+      [name]: value,
+    });
   };
 
-  const onChangeDescription = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(event.target.value);
+  const onCloseModal = () => {
+    setOpenModal(false);
+
+    if (setDataModal) {
+      setDataModal({} as TaskItemProps);
+    }
   };
 
   return (
@@ -27,19 +50,26 @@ export const TaskModal: FC = () => {
       className={styles.popup}
       renderTitle={<p className={styles.title}>Новая задача</p>}
       open={openModal}
-      onClose={setOpenModal}
+      onClose={onCloseModal}
     >
       <div className={styles.content}>
-        <Textarea className={styles.name} value={name} onChange={onChangeName} placeholder="Название" />
+        <Textarea
+          className={styles.name}
+          value={data.name}
+          onChange={onChangeTextarea}
+          name="name"
+          placeholder="Название"
+        />
         <Textarea
           className={styles.description}
-          value={description}
-          onChange={onChangeDescription}
+          value={data.description}
+          onChange={onChangeTextarea}
+          name="description"
           placeholder="Описание"
         />
       </div>
       <div className={styles.footer}>
-        <button className={clsx(styles.button, styles.buttonCancel)} type="button" onClick={setOpenModal}>
+        <button className={clsx(styles.button, styles.buttonCancel)} type="button" onClick={onCloseModal}>
           Отменить
         </button>
         <button className={clsx(styles.button, styles.buttonSave)} type="button">

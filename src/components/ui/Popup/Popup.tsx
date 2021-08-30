@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import clsx from 'clsx';
 
+import { useEscape } from '@/hooks/useEscape';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { CrossIcon } from '@/icons';
 
@@ -28,6 +29,8 @@ export const Popup: FC<PopupProps> = ({
   const onCloseHandle = () => {
     onClose();
   };
+
+  useEscape(onCloseHandle);
 
   return (
     open ? (

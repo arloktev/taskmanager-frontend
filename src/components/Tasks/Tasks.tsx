@@ -24,16 +24,20 @@ export const Tasks: FC = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<TaskItemProps>({} as TaskItemProps);
 
-  const toggleOpenModal = () => {
-    setOpen(!open);
+  const handleOpenModal = (value: boolean) => {
+    setOpen(value);
+  };
+
+  const handleSetDataModal = (value: TaskItemProps) => {
+    setData(value);
   };
 
   return (
     <TasksContextProvider
       openModal={open}
-      setOpenModal={toggleOpenModal}
+      setOpenModal={(value) => handleOpenModal(value)}
       dataModal={data}
-      setDataModal={() => setData(data)}
+      setDataModal={(value) => handleSetDataModal(value)}
     >
       <ul className={styles.list}>
         <li className={styles.item}>

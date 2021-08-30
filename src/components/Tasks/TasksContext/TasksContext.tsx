@@ -4,15 +4,14 @@ import { TaskItemProps } from '../types/TasksTypes';
 
 type TasksContextProps = {
   openModal: boolean,
-  setOpenModal: () => void;
+  setOpenModal: (value: boolean) => void;
   dataModal?: TaskItemProps;
-  setDataModal: (data: TaskItemProps) => void;
+  setDataModal?: (data: TaskItemProps) => void;
 };
 
 const TasksContextDefaultValue = {
   openModal: false,
   setOpenModal: () => null,
-  setDataModal: () => null,
 };
 
 export const TasksContext = createContext<TasksContextProps>(TasksContextDefaultValue);

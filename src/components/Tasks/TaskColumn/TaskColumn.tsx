@@ -16,15 +16,15 @@ type TaskColumnProps = {
 export const TaskColumn: FC<TaskColumnProps> = ({ title, tasks }) => {
   const { setOpenModal } = useContext(TasksContext);
 
-  const onAddTaskHandle = () => {
-    setOpenModal();
+  const handleAddOnTask = () => {
+    setOpenModal(true);
   };
 
   return (
     <div className={styles.root}>
       <div className={styles.wrapperTitle}>
         <p className={styles.title}>{title}</p>
-        <button type="button" onClick={onAddTaskHandle}>
+        <button type="button" onClick={handleAddOnTask}>
           <PlusIcon />
         </button>
       </div>
@@ -37,7 +37,6 @@ export const TaskColumn: FC<TaskColumnProps> = ({ title, tasks }) => {
           ))}
         </ul>
       )}
-
     </div>
   );
 };
