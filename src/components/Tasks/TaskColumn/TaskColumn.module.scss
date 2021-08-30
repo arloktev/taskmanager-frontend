@@ -1,0 +1,28 @@
+.root {
+  padding: 15px;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+}
+
+.wrapperTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.list {
+  margin-top: 15px;
+}
+
+.item {
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
